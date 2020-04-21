@@ -5,9 +5,9 @@
         </div>
         <ul id="list" v-if="!loading">
             <li
-            v-for="item in items"
-            :key="item.id.value">
-                {{ item.name.first }}
+            v-for="user in users"
+            :key="user.id.value">
+                {{ user.name.first }}
             </li>
         </ul>
     </div>
@@ -21,7 +21,7 @@ export default {
     data: function(){
         return {
             loading: true,
-            items: []
+            users: []
         }
     },
     created() {
@@ -32,8 +32,7 @@ export default {
       fetch(FETCH_USERS_URL)
         .then(resp => resp.json())
         .then(data => {
-            console.log(data.results);
-            this.items = data.results
+            this.users = data.results
             this.loading = false;
             });
     }
